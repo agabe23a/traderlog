@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en"><head><%- include('partials/head') %></head>
+<body class="tl-body">
+<%- include('partials/nav') %>
+<main class="container-fluid px-3 px-lg-4 py-3 py-lg-4">
+  <div class="d-flex flex-wrap justify-content-between align-items-end gap-3 mb-4"><div><div class="tl-terminal-label">TRADERS LOG // MACRO DESK</div><h1 class="display-6 fw-bold text-white">ECONOMIC CALENDAR</h1><p class="tl-muted mb-0">Scheduled macroeconomic events from a configured market-data provider. Actual values are shown only when supplied by the provider.</p></div><button id="calendarRefresh" class="btn tl-btn-gold">Refresh</button></div>
+  <div class="tl-card p-3 mb-3"><div class="d-flex gap-2 flex-wrap"><button class="btn btn-sm btn-outline-secondary active cal-filter" data-impact="">All</button><button class="btn btn-sm btn-outline-secondary cal-filter" data-impact="high">High</button><button class="btn btn-sm btn-outline-secondary cal-filter" data-impact="medium">Medium</button><button class="btn btn-sm btn-outline-secondary cal-filter" data-impact="low">Low</button><span id="calendarStatus" class="ms-auto tl-terminal-label">CONNECTING</span></div></div>
+  <div class="tl-card p-3"><div class="table-responsive"><table class="table tl-table align-middle"><thead><tr><th>DATE</th><th>EVENT</th><th>COUNTRY</th><th>CURRENCY</th><th>IMPACT</th><th>PREVIOUS</th><th>FORECAST</th><th>ACTUAL</th></tr></thead><tbody id="calendarRows"><tr><td colspan="8" class="text-center tl-muted py-5">Loading calendar…</td></tr></tbody></table></div></div>
+  <div class="small tl-muted mt-3">If FINNHUB_API_KEY is not configured, the page reports unavailable data rather than generating an artificial calendar.</div>
+</main>
+<script src="/js/calendar.js"></script>
+<%- include('partials/footer') %>
+</body></html>

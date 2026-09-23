@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><%- include('partials/head') %></head>
+<body class="tl-body tl-scanner-page">
+<%- include('partials/nav') %>
+
+<main class="tl-scanner-wrap">
+  <section class="tl-scanner-hero">
+    <div class="tl-scanner-hero-copy">
+      <div class="tl-terminal-label"><span class="tl-live-dot"></span> TRADERS LOG // INTELLIGENCE ENGINE</div>
+      <h1>MARKET <span>SCANNER</span></h1>
+      <p>Multi-factor market reconnaissance across provider-supplied data. Rank instruments by trend, momentum, volatility, structure, support/resistance and CRT context.</p>
+      <div class="tl-scanner-tags">
+        <span><i class="bi bi-shield-check"></i> Explainable</span>
+        <span><i class="bi bi-database-check"></i> Data-aware</span>
+        <span><i class="bi bi-diagram-3"></i> Multi-factor</span>
+        <span><i class="bi bi-lightning-charge"></i> CRT context</span>
+      </div>
+    </div>
+    <div class="tl-scanner-hero-status">
+      <div class="tl-status-orb"><span></span></div>
+      <div>
+        <div class="tl-terminal-label">ENGINE</div>
+        <strong id="heroEngineState">READY</strong>
+        <small id="scannerClock">--:--:--</small>
+      </div>
+    </div>
+  </section>
+
+  <% if (configuredProviders.length === 0) { %>
+    <div class="tl-data-warning">
+      <i class="bi bi-exclamation-triangle-fill"></i>
+      <div><strong>LIVE DATA CONFIGURATION</strong><br><span>No broad market-data provider key is configured. Configure <code>TWELVE_DATA_API_KEY</code> or <code>ALPHAVANTAGE_API_KEY</code> in <code>.env</code>. The scanner will never invent missing prices.</span></div>
+    </div>
+  <% } %>
+
+  <section class="tl-scanner-command">
+    <div class="tl-command-head">
+      <div>
+        <div class="tl-terminal-label">SCAN COMMAND CENTER</div>
+        <h2>Opportunity Matrix</h2>
+      </div>
+      <div class="tl-command-meta">
+        <span id="dataModeBadge" class="tl-data-badge"><span class="tl-live-dot"></span> PROVIDER DATA</span>
+        <span id="lastScanLabel">NO SCAN</span>
+      </div>
+    </div>
+
+    <div class="tl-filter-grid">
+      <div class="tl-filter">
+        <label for="scanAsset">UNIVERSE</label>
+        <select id="scanAsset" class="form-select tl-select">
+          <option value="ALL">ALL MARKETS</option>
+          <option value="FOREX">FOREX</option>
+          <option value="STOCKS">STOCKS</option>
+          <option value="INDICES">INDICES</option>
+          <option value="COMMODITIES">COMMODITIES</option>
+          <option value="CRYPTO">CRYPTO</option>
+          <option value="ETF">ETFs</option>
+          <option value="BONDS">BONDS</option>
+        </select>
+      </div>
+      <div class="tl-filter">
+        <label>TIMEFRAME</label>
+        <div id="timeframeChips" class="tl-chip-row">
+          <button type="button" class="tl-tf-chip" data-tf="15M">15M</button>
+          <button type="button" class="tl-tf-chip" data-tf="30M">30M</button>
+          <button type="button" class="tl-tf-chip is-active" data-tf="1H">1H</button>
+          <button type="button" class="tl-tf-chip" data-tf="4H">4H</button>
+          <button type="button" class="tl-tf-chip" data-tf="Daily">1D</button>
+          <button type="button" class="tl-tf-chip" data-tf="Weekly">1W</button>
+        </div>
+        <select id="scanTimeframe" class="visually-hidden" aria-label="Timeframe">
+          <option value="15M">15M</option><option value="30M">30M</option><option value="1H" selected>1H</option>
+          <option value="4H">4H</option><option value="Daily">Daily</option><option value="Weekly">Weekly</option>
+        </select>
+      </div>
+      <div class="tl-filter">
+        <div class="d-flex justify-content-between align-items-center">
+          <label for="scanMinScore">MIN SCORE</label><strong id="minScoreVal" class="tl-filter-value">0</strong>
+        </div>
+        <input id="scanMinScore" type="range" min="0" max="100" value="0" class="form-range" aria-label="Minimum score">
+      </div>
+      <div class="tl-filter">
+        <label for="resultBiasFilter">BIAS FILTER</label>
+        <select id="resultBiasFilter" class="form-select tl-select">
+          <option value="ALL">ALL BIASES</option>
+          <option value="Bullish">BUY / BULLISH</option>
+          <option value="Bearish">SELL / BEARISH</option>
+          <option value="Neutral">WAIT / NEUTRAL</option>
+        </select>
+      </div>
+      <div class="tl-filter">
+        <label for="confidenceFilter">CONFIDENCE</label>
+        <select id="confidenceFilter" class="form-select tl-select">
+          <option value="ALL">ALL LEVELS</option>
+          <option value="High">HIGH</option><option value="Medium">MEDIUM</option><option value="Low">LOW</option>
+        </select>
+      </div>
+      <div class="tl-filter tl-filter-action">
+        <button id="runScanBtn" class="btn tl-btn-scan"><span class="scan-btn-icon"><i class="bi bi-radar"></i></span><span>RUN SCAN</span><kbd>CTRL ↵</kbd></button>
+      </div>
+    </div>
+
+    <div class="tl-quick-actions">
+      <button id="clearScanBtn" type="button"><i class="bi bi-arrow-counterclockwise"></i> Clear</button>
+      <button id="refreshScanBtn" type="button"><i class="bi bi-arrow-repeat"></i> Rescan</button>
+      <button id="autoScanBtn" type="button" aria-pressed="false"><i class="bi bi-broadcast"></i> Auto</button>
+      <span class="tl-command-hint"><i class="bi bi-info-circle"></i> Scores are analytical confluence scores, not profit probabilities.</span>
+    </div>
+  </section>
+
+  <section class="tl-scanner-grid">
+    <div class="tl-scanner-main">
+      <div id="scannerPanel" class="tl-engine-panel">
+        <div class="tl-engine-top">
+          <div>
+            <div class="tl-terminal-label">ENGINE TELEMETRY</div>
+            <div id="engineStatus" class="tl-engine-status">STANDBY // AWAITING COMMAND</div>
+          </div>
+          <div class="tl-engine-readouts">
+            <span><b id="scanDuration">00.0s</b> ELAPSED</span>
+            <span id="scanPhase">SIGNAL GRID // STANDBY</span>
+          </div>
+        </div>
+
+        <div id="scanStage" class="tl-scanner-stage">
+          <div class="tl-radar">
+            <div class="tl-radar-grid"></div>
+            <div class="tl-radar-sweep"></div>
+            <div class="tl-radar-core">
+              <div class="tl-radar-core-ring"></div>
+              <strong id="radarPercent">READY</strong>
+              <small id="radarSub">SYSTEM IDLE</small>
+            </div>
+            <div class="tl-radar-axis axis-x"></div><div class="tl-radar-axis axis-y"></div>
+          </div>
+          <div class="tl-scan-status">
+            <span id="scanProgressText">0%</span>
+            <span><i class="tl-live-dot"></i> <span id="scanDataState">DATA LINK STANDBY</span></span>
+          </div>
+        </div>
+
+        <div class="tl-progress mt-3"><span id="scanProgressBar"></span></div>
+        <div id="scanLog" class="tl-scan-log" aria-live="polite"><div>Scanner engine ready. Awaiting universe selection.</div></div>
+
+        <div class="tl-scan-summary">
+          <div class="tl-summary-cell"><span>ANALYZED</span><strong id="kpiAnalyzed">—</strong></div>
+          <div class="tl-summary-cell"><span>MATCHES</span><strong id="kpiMatches">—</strong></div>
+          <div class="tl-summary-cell"><span class="bullish-label">BULLISH</span><strong id="kpiBullish" class="tl-bullish">—</strong></div>
+          <div class="tl-summary-cell"><span class="bearish-label">BEARISH</span><strong id="kpiBearish" class="tl-bearish">—</strong></div>
+        </div>
+      </div>
+
+      <div class="tl-results-head">
+        <div>
+          <div class="tl-terminal-label">RANKED OUTPUT</div>
+          <h2>Opportunity Field</h2>
+        </div>
+        <div class="tl-results-tools">
+          <span id="resultCountLabel">0 RESULTS</span>
+          <select id="resultSort" class="tl-mini-select" aria-label="Sort results">
+            <option value="score">Score</option><option value="symbol">Symbol</option><option value="confidence">Confidence</option>
+          </select>
+        </div>
+      </div>
+
+      <div id="scanResults">
+        <div class="tl-empty-scanner">
+          <div class="tl-empty-radar"><i class="bi bi-radar"></i></div>
+          <strong>Awaiting market reconnaissance</strong>
+          <span>Configure the universe and timeframe, then run the scanner.</span>
+        </div>
+      </div>
+    </div>
+
+    <aside class="tl-scanner-side">
+      <div class="tl-side-card">
+        <div class="tl-side-title"><span><i class="bi bi-activity"></i> MARKET PULSE</span><em>LOCAL</em></div>
+        <div class="tl-pulse-grid">
+          <div><span>ENGINE</span><strong id="pulseEngine">TECHNICAL v3</strong></div>
+          <div><span>UNIVERSE</span><strong id="pulseUniverse">ALL</strong></div>
+          <div><span>TIMEFRAME</span><strong id="pulseTimeframe">1H</strong></div>
+          <div><span>MODE</span><strong>EXPLAINABLE</strong></div>
+        </div>
+      </div>
+
+      <div class="tl-side-card">
+        <div class="tl-side-title"><span><i class="bi bi-clock-history"></i> SESSION MATRIX</span><em id="sessionPulse">SYNC</em></div>
+        <div id="sessionPanel" class="tl-side-content">Loading…</div>
+      </div>
+
+      <div class="tl-side-card">
+        <div class="tl-side-title"><span><i class="bi bi-currency-exchange"></i> CURRENCY STRENGTH</span><em>LIVE</em></div>
+        <div id="currencyStrengthPanel" class="tl-side-content">Loading…</div>
+      </div>
+
+      <div class="tl-side-card">
+        <div class="tl-side-title"><span><i class="bi bi-stars"></i> WATCHLIST</span><em>QUICK</em></div>
+        <div id="quickWatchlist" class="tl-side-content">Loading…</div>
+        <a href="/watchlists" class="tl-side-link">Open watchlists <i class="bi bi-arrow-up-right"></i></a>
+      </div>
+
+      <div class="tl-side-card tl-method-card">
+        <div class="tl-side-title"><span><i class="bi bi-diagram-3"></i> ENGINE STACK</span><em>v3</em></div>
+        <div class="tl-method"><b>01</b><span>Trend alignment</span></div>
+        <div class="tl-method"><b>02</b><span>Momentum & volatility</span></div>
+        <div class="tl-method"><b>03</b><span>Support / resistance</span></div>
+        <div class="tl-method"><b>04</b><span>CRT range context</span></div>
+        <div class="tl-method"><b>05</b><span>Risk / invalidation</span></div>
+      </div>
+    </aside>
+  </section>
+
+  <div class="tl-scanner-disclaimer">
+    <i class="bi bi-shield-exclamation"></i>
+    <span>TRADERS LOG scanner output is an analytical aid. It does not guarantee direction, execution, returns or profitability. Verify the underlying market data, structure, news and risk before acting.</span>
+  </div>
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+<script src="/js/scanner.js"></script>
+<%- include('partials/footer') %>
+</body>
+</html>

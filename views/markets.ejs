@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en"><head><%- include('partials/head') %></head>
+<body class="tl-body">
+<%- include('partials/nav') %>
+<main class="container-fluid px-3 px-lg-4 py-3 py-lg-4">
+  <section class="tl-market-hero">
+    <div class="d-flex flex-wrap justify-content-between align-items-end gap-3">
+      <div><div class="tl-terminal-label">TRADERS LOG // GLOBAL MARKET DESK</div><h1 class="display-6 fw-bold text-white mb-2">LIVE MARKETS</h1><p class="tl-muted mb-0">Provider-backed quotes across the instrument universe. Every card reports its data state and timestamp.</p></div>
+      <div class="text-end"><div id="marketUpdated" class="tl-terminal-label">WAITING FOR DATA</div><button id="refreshMarkets" class="btn tl-btn-gold mt-2"><i class="bi bi-arrow-repeat"></i> REFRESH</button></div>
+    </div>
+  </section>
+  <div class="tl-stat-strip mb-3">
+    <div class="tl-card p-3"><div class="tl-terminal-label">INSTRUMENTS</div><strong id="marketCount" class="fs-4">—</strong></div>
+    <div class="tl-card p-3"><div class="tl-terminal-label">LIVE</div><strong id="liveCount" class="fs-4 tl-bullish">—</strong></div>
+    <div class="tl-card p-3"><div class="tl-terminal-label">STALE</div><strong id="staleCount" class="fs-4">—</strong></div>
+    <div class="tl-card p-3"><div class="tl-terminal-label">UNAVAILABLE</div><strong id="unavailableCount" class="fs-4 tl-bearish">—</strong></div>
+  </div>
+  <div class="tl-command-card p-3 mb-3">
+    <div class="tl-market-toolbar">
+      <button class="btn btn-sm btn-outline-secondary tl-market-filter active" data-market="">All</button>
+      <button class="btn btn-sm btn-outline-secondary tl-market-filter" data-market="FOREX">Forex</button>
+      <button class="btn btn-sm btn-outline-secondary tl-market-filter" data-market="STOCKS">Stocks</button>
+      <button class="btn btn-sm btn-outline-secondary tl-market-filter" data-market="CRYPTO">Crypto</button>
+      <button class="btn btn-sm btn-outline-secondary tl-market-filter" data-market="INDICES">Indices</button>
+      <button class="btn btn-sm btn-outline-secondary tl-market-filter" data-market="COMMODITIES">Commodities</button>
+      <button class="btn btn-sm btn-outline-secondary tl-market-filter" data-market="ETF">ETFs</button>
+      <span class="ms-auto tl-terminal-label">AUTO REFRESH 60s</span>
+    </div>
+  </div>
+  <div id="marketGrid" class="row g-3"><div class="col-12"><div class="tl-card p-5 text-center tl-muted">Loading market universe…</div></div></div>
+  <div class="small tl-muted mt-3">Data availability depends on configured providers, market hours, licensing and API limits. This screen never invents prices.</div>
+</main>
+<script src="/js/markets.js"></script>
+<%- include('partials/footer') %>
+</body></html>

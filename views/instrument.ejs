@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><%- include('partials/head') %></head>
+<body class="tl-body">
+<%- include('partials/nav') %>
+
+<div class="container-fluid px-3 px-lg-4 py-3 py-lg-4" data-instrument-id="<%= instrument.id %>" data-symbol="<%= instrument.symbol %>">
+  <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-4">
+    <div>
+      <div class="tl-terminal-label mb-1">INSTRUMENT // MARKET INTELLIGENCE</div>
+      <div class="d-flex align-items-baseline gap-3 flex-wrap">
+        <h3 class="tl-heading mb-0 text-white" style="font-size:1.2rem"><%= instrument.symbol %></h3>
+        <span class="tl-muted"><%= instrument.name %></span>
+        <span class="badge tl-badge-gold"><%= instrument.market_code %></span>
+      </div>
+    </div>
+    <div class="d-flex align-items-center gap-2">
+      <% if (typeof user !== 'undefined' && user) { %>
+        <div class="dropdown">
+          <button class="btn btn-sm tl-btn-gold dropdown-toggle" id="addToWatchlistBtn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="bi bi-star"></i> Add to Watchlist
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end tl-dropdown tl-watchlist-menu" id="watchlistDropdownMenu" aria-labelledby="addToWatchlistBtn">
+            <li><span class="dropdown-item-text tl-muted small">Loading watchlists…</span></li>
+          </ul>
+        </div>
+      <% } else { %>
+        <a href="/login?next=<%= encodeURIComponent('/instrument/' + instrument.id) %>" class="btn btn-sm btn-outline-secondary">
+          <i class="bi bi-star"></i> Sign in to save
+        </a>
+      <% } %>
+      <div class="tl-market-chip"><span class="tl-live-dot"></span> DATA LINK</div>
+    </div>
+  </div>
+
+  <div class="tl-card p-3 mb-3 instrument-chart-card">
+    <div class="chart-head"><div><span class="tl-terminal-label">LIVE ANALYSIS CHART</span><strong class="d-block text-white"><%= instrument.symbol %></strong></div><button type="button" class="chart-expand-btn" id="instrumentChartExpand" aria-label="Expand chart"><i class="bi bi-arrows-fullscreen"></i><span>Expand</span></button></div>
+    <div id="instrumentChart" class="instrument-chart"></div>
+  </div>
+
+  <div class="row g-3 g-xl-4">
+    <div class="col-lg-8">
+      <div class="tl-card p-3 mb-3">
+        <div id="quoteBlock" class="tl-muted">Loading quote…</div>
+      </div>
+      <div class="tl-card p-3 mb-3">
+        <h6 class="tl-heading mb-3"><i class="bi bi-diagram-3-fill"></i> MULTI-TIMEFRAME BIAS</h6>
+        <div id="multiTimeframeBlock" class="tl-muted">Loading…</div>
+      </div>
+    </div>
+    <div class="col-lg-4">
+      <div class="tl-card p-3">
+        <h6 class="tl-heading mb-3"><i class="bi bi-cpu-fill"></i> SCANNER INTELLIGENCE</h6>
+        <div id="scannerBlock" class="tl-muted">Loading…</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+<script src="/js/instrument.js"></script>
+<%- include('partials/footer') %>
+</body>
+</html>

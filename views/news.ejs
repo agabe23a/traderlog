@@ -1,0 +1,10 @@
+<!DOCTYPE html><html lang="en"><head><%- include('partials/head') %></head><body class="tl-body">
+<%- include('partials/nav') %>
+<main class="container-fluid px-3 px-lg-5 py-4">
+ <div class="tl-hero mb-4"><div><div class="tl-terminal-label">TRADERS LOG // GLOBAL INTELLIGENCE</div><h1 class="display-6 fw-bold mb-2">MARKET NEWS <span class="tl-accent">LIVE FEED</span></h1><p class="tl-muted mb-0">A fast market-news dashboard with source links, timestamps and category filters. Headlines are fetched from public RSS feeds; verify important information at the original source.</p></div><button id="newsRefresh" class="btn tl-btn-gold"><i class="bi bi-arrow-repeat"></i> REFRESH</button></div>
+ <div class="row g-3 mb-4"><div class="col-md-4"><div class="tl-stat"><span>FEED</span><strong id="newsStatus">CONNECTING</strong></div></div><div class="col-md-4"><div class="tl-stat"><span>HEADLINES</span><strong id="newsCount">—</strong></div></div><div class="col-md-4"><div class="tl-stat"><span>UPDATED</span><strong id="newsUpdated">—</strong></div></div></div>
+ <div class="tl-card p-3"><div class="d-flex gap-2 flex-wrap mb-3"><button class="btn btn-sm tl-filter active" data-filter="all">All</button><button class="btn btn-sm tl-filter" data-filter="forex">Forex</button><button class="btn btn-sm tl-filter" data-filter="central">Central Banks</button><button class="btn btn-sm tl-filter" data-filter="market">Markets</button></div><div id="newsGrid" class="row g-3"><div class="col-12 text-center tl-muted py-5">Loading market intelligence…</div></div></div>
+ <div class="mt-3 small tl-muted"><i class="bi bi-info-circle"></i> News is informational, not a trading signal. Delays, missing feeds and third-party errors can occur.</div>
+</main>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script><script src="/js/news.js"></script><%- include('partials/footer') %>
+</body></html>

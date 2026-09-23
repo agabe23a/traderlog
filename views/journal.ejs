@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><%- include('partials/head') %></head>
+<body class="tl-body">
+<%- include('partials/nav') %>
+
+<div class="container-fluid px-3 px-lg-4 py-3 py-lg-4">
+  <div class="d-flex flex-wrap justify-content-between align-items-end gap-3 mb-4">
+    <div>
+      <div class="tl-terminal-label mb-1">TRADERS LOG // TRADE RECORD</div>
+      <h2 class="mb-1 fw-bold text-white">TRADING JOURNAL</h2>
+      <div class="tl-muted small">Log, review and refine every trade.</div>
+    </div>
+    <div class="d-flex gap-2">
+      <a href="/dashboard" class="btn btn-sm btn-outline-secondary"><i class="bi bi-bar-chart-line"></i> Dashboard</a>
+      <a href="/api/journal/export.csv" class="btn btn-sm btn-outline-secondary"><i class="bi bi-filetype-csv"></i> CSV</a>
+      <a href="/api/journal/export.json" class="btn btn-sm btn-outline-secondary"><i class="bi bi-filetype-json"></i> JSON</a>
+      <button id="newTrade" class="btn tl-btn-gold"><i class="bi bi-plus-lg"></i> NEW TRADE</button>
+    </div>
+  </div>
+
+  <div class="tl-card p-3 mb-3">
+    <div class="row g-2 align-items-end">
+      <div class="col-6 col-md-3">
+        <label class="tl-label mb-1">Status</label>
+        <select id="status" class="form-select tl-select">
+          <option value="">All</option>
+          <option value="OPEN">Open</option>
+          <option value="CLOSED">Closed</option>
+          <option value="CANCELLED">Cancelled</option>
+        </select>
+      </div>
+      <div class="col-6 col-md-3">
+        <label class="tl-label mb-1">Strategy</label>
+        <input id="strategy" class="tl-auth-input tl-select" type="text" placeholder="e.g. CRT">
+      </div>
+      <div class="col-8 col-md-4">
+        <label class="tl-label mb-1">Search symbol / notes</label>
+        <input id="search" class="tl-auth-input tl-select" type="text" placeholder="Search…">
+      </div>
+      <div class="col-4 col-md-2">
+        <button id="filter" class="btn btn-outline-secondary w-100"><i class="bi bi-funnel"></i> Filter</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="tl-card p-3">
+    <div class="table-responsive">
+      <table class="table tl-table mb-0 align-middle">
+        <thead>
+          <tr>
+            <th>Date</th><th>Symbol</th><th>Dir</th><th>Size</th><th>Entry</th><th>Exit</th><th>P&amp;L</th><th>Status</th><th></th>
+          </tr>
+        </thead>
+        <tbody id="trades">
+          <tr><td colspan="9" class="text-center tl-muted py-5"><span class="spinner-border spinner-border-sm me-2"></span> Loading trades…</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- Trade modal -->
+<div class="modal fade" id="tradeModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-scrollable">
+    <div class="modal-content tl-modal">
+      <div class="modal-header">
+        <h5 class="modal-title tl-heading"><i class="bi bi-journal-text"></i> TRADE ENTRY</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form id="tradeForm">
+        <div class="modal-body">
+          <div id="formError" class="tl-error mb-3 d-none"></div>
+          <input type="hidden" id="tradeId">
+
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label class="tl-label mb-1">Instrument</label>
+              <select id="instrument" class="form-select tl-select" required></select>
+            </div>
+            <div class="col-md-3">
+              <label class="tl-label mb-1">Direction</label>
+              <select id="direction" class="form-select tl-select" required>
+                <option value="LONG">LONG</option>
+                <option value="SHORT">SHORT</option>
+              </select>
+            </div>
+            <div class="col-md-3">
+              <label class="tl-label mb-1">Status</label>
+              <select id="tradeStatus" class="form-select tl-select" required>
+                <option value="OPEN">OPEN</option>
+                <option value="CLOSED">CLOSED</option>
+                <option value="CANCELLED">CANCELLED</option>
+              </select>
+            </div>
+
+            <div class="col-md-4">
+              <label class="tl-label mb-1">Entry price</label>
+              <input id="entry_price" type="number" step="any" class="tl-auth-input tl-select">
+            </div>
+            <div class="col-md-4">
+              <label class="tl-label mb-1">Exit price</label>
+              <input id="exit_price" type="number" step="any" class="tl-auth-input tl-select">
+            </div>
+            <div class="col-md-4">
+              <label class="tl-label mb-1">Position size</label>
+              <input id="position_size" type="number" step="any" class="tl-auth-input tl-select">
+            </div>
+
+            <div class="col-md-4">
+              <label class="tl-label mb-1">Stop loss</label>
+              <input id="stop_loss" type="number" step="any" class="tl-auth-input tl-select">
+            </div>
+            <div class="col-md-4">
+              <label class="tl-label mb-1">Take profit</label>
+              <input id="take_profit" type="number" step="any" class="tl-auth-input tl-select">
+            </div>
+            <div class="col-md-4">
+              <label class="tl-label mb-1">Fees</label>
+              <input id="fees" type="number" step="any" class="tl-auth-input tl-select">
+            </div>
+
+            <div class="col-md-6">
+              <label class="tl-label mb-1">Entry time</label>
+              <input id="entry_time" type="datetime-local" class="tl-auth-input tl-select">
+            </div>
+            <div class="col-md-6">
+              <label class="tl-label mb-1">Exit time</label>
+              <input id="exit_time" type="datetime-local" class="tl-auth-input tl-select">
+            </div>
+
+            <div class="col-md-4">
+              <label class="tl-label mb-1">Strategy</label>
+              <input id="strategyInput" type="text" class="tl-auth-input tl-select" placeholder="e.g. CRT">
+            </div>
+            <div class="col-md-4">
+              <label class="tl-label mb-1">Setup</label>
+              <input id="setupInput" type="text" class="tl-auth-input tl-select" placeholder="e.g. Breakout retest">
+            </div>
+            <div class="col-md-4">
+              <label class="tl-label mb-1">Session</label>
+              <input id="sessionInput" type="text" class="tl-auth-input tl-select" placeholder="e.g. London">
+            </div>
+
+            <div class="col-md-6">
+              <label class="tl-label mb-1">Tags (comma separated)</label>
+              <input id="tags" type="text" class="tl-auth-input tl-select" placeholder="breakout, news, A+">
+            </div>
+            <div class="col-md-6">
+              <label class="tl-label mb-1">Screenshot URLs (comma separated)</label>
+              <input id="screenshots" type="text" class="tl-auth-input tl-select" placeholder="https://…">
+            </div>
+
+            <div class="col-md-6">
+              <label class="tl-label mb-1">Upload screenshots</label>
+              <input id="screenshotFiles" type="file" class="form-control tl-select" accept="image/*" multiple>
+            </div>
+            <div class="col-md-6">
+              <label class="tl-label mb-1">Emotions</label>
+              <input id="emotions" type="text" class="tl-auth-input tl-select" placeholder="Confident, patient…">
+            </div>
+
+            <div class="col-12">
+              <label class="tl-label mb-1">Notes</label>
+              <textarea id="notes" rows="3" class="tl-auth-input tl-select" placeholder="Trade rationale, mistakes, lessons…"></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="submit" class="btn tl-btn-gold"><i class="bi bi-save"></i> SAVE TRADE</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+<script src="/js/journal.js"></script>
+<%- include('partials/footer') %>
+</body>
+</html>

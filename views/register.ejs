@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><%- include('partials/head') %></head>
+<body class="tl-body tl-auth-body">
+<div class="tl-auth-shell">
+  <div class="tl-auth-panel">
+    <a href="/" class="tl-auth-brand">
+      <img src="/assets/traders-log-logo.png" alt="TRADERS LOG">
+      <span>TRADERS LOG</span>
+    </a>
+    <h3 class="tl-auth-title">Create account</h3>
+    <p class="tl-auth-sub">Set up your workspace to track trades and build your edge.</p>
+
+    <% if (typeof error !== 'undefined' && error) { %>
+      <div class="tl-error mb-3"><i class="bi bi-exclamation-triangle"></i> <%= error %></div>
+    <% } %>
+
+    <form method="POST" action="/register" class="tl-auth-form" autocomplete="on">
+      <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+
+      <label class="tl-label mb-1" for="displayName">Display name</label>
+      <input class="tl-auth-input mb-3" type="text" id="displayName" name="displayName" placeholder="How should we address you?" maxlength="80">
+
+      <label class="tl-label mb-1" for="email">Email address</label>
+      <input class="tl-auth-input mb-3" type="email" id="email" name="email" placeholder="you@example.com" required autofocus>
+
+      <label class="tl-label mb-1" for="password">Password</label>
+      <div class="tl-auth-pass-wrap mb-1">
+        <input class="tl-auth-input" type="password" id="password" name="password" placeholder="At least 10 characters" required minlength="10" maxlength="128">
+        <button type="button" class="tl-auth-eye" id="togglePass" aria-label="Show password"><i class="bi bi-eye"></i></button>
+      </div>
+      <div class="tl-auth-hint mb-3">10–128 characters. Longer, unique passwords are stronger.</div>
+
+      <button type="submit" class="btn tl-btn-gold w-100 mt-1"><i class="bi bi-person-plus"></i> CREATE ACCOUNT</button>
+    </form>
+
+    <div class="tl-auth-foot">
+      Already have an account? <a href="/login" class="tl-link">Sign in</a>
+    </div>
+    <a href="/" class="tl-auth-back"><i class="bi bi-arrow-left"></i> Back to home</a>
+  </div>
+</div>
+<script src="/js/auth-ui.js"></script>
+</body>
+</html>

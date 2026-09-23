@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><%- include('partials/head') %></head>
+<body class="tl-body" data-trade-id="<%= tradeId %>">
+<%- include('partials/nav') %>
+
+<div class="container-fluid px-3 px-lg-4 py-3 py-lg-4">
+  <div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
+    <div>
+      <a href="/journal" class="tl-link small"><i class="bi bi-arrow-left"></i> Back to journal</a>
+      <div class="tl-terminal-label mt-2 mb-1">TRADE RECORD</div>
+      <h2 id="tdSymbol" class="mb-0 fw-bold text-white">Loading…</h2>
+    </div>
+    <div class="d-flex gap-2">
+      <button id="tdEdit" class="btn btn-outline-secondary"><i class="bi bi-pencil"></i> Edit</button>
+      <button id="tdDelete" class="btn btn-outline-danger"><i class="bi bi-trash"></i> Delete</button>
+    </div>
+  </div>
+
+  <div id="tdError" class="tl-error mb-3 d-none"></div>
+
+  <div class="row g-3 g-xl-4">
+    <div class="col-lg-8">
+      <div class="tl-card p-3 mb-3">
+        <div id="tdSummary" class="tl-muted"><span class="spinner-border spinner-border-sm me-2"></span> Loading trade…</div>
+      </div>
+      <div class="tl-card p-3 mb-3">
+        <h6 class="tl-heading mb-2"><i class="bi bi-journal-text"></i> NOTES</h6>
+        <div id="tdNotes" class="tl-muted small">—</div>
+      </div>
+      <div class="tl-card p-3">
+        <h6 class="tl-heading mb-2"><i class="bi bi-images"></i> SCREENSHOTS</h6>
+        <div id="tdScreens" class="tl-muted small">No screenshots attached.</div>
+      </div>
+    </div>
+    <div class="col-lg-4">
+      <div class="tl-card p-3 mb-3">
+        <h6 class="tl-heading mb-3"><i class="bi bi-sliders2"></i> TRADE FACTORS</h6>
+        <div id="tdFactors" class="small">—</div>
+      </div>
+      <div class="tl-card p-3">
+        <h6 class="tl-heading mb-2"><i class="bi bi-emoji-smile"></i> EMOTIONS</h6>
+        <div id="tdEmotions" class="tl-muted small">—</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+<script src="/js/trade-detail.js"></script>
+<%- include('partials/footer') %>
+</body>
+</html>

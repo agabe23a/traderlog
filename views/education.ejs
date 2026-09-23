@@ -1,0 +1,128 @@
+<!DOCTYPE html><html lang="en"><head><%- include('partials/head') %></head><body class="tl-body">
+<%- include('partials/nav') %>
+<main class="container-fluid px-3 px-lg-5 py-4">
+  <div class="tl-hero mb-4">
+    <div>
+      <div class="tl-terminal-label">TRADERS LOG // LEARNING DESK</div>
+      <h1 class="display-6 fw-bold">TRADING <span class="tl-accent">EDUCATION</span></h1>
+      <p class="tl-muted mb-0">Fundamentals, chart reading and an indicator glossary that matches exactly what the Scanner's evidence engine checks — read the theory here, then see it applied live on any instrument page.</p>
+    </div>
+    <div class="tl-badge-gold px-3 py-2 rounded-pill">10 MODULES</div>
+  </div>
+
+  <div class="accordion" id="eduAccordion">
+
+    <div class="tl-command-card mb-3 overflow-hidden">
+      <h2 class="accordion-header m-0">
+        <button class="accordion-button tl-accordion-btn" type="button" data-bs-toggle="collapse" data-bs-target="#eduBasics">
+          <i class="bi bi-1-circle me-2"></i> Market basics — pips, lots, spread
+        </button>
+      </h2>
+      <div id="eduBasics" class="accordion-collapse collapse show" data-bs-parent="#eduAccordion">
+        <div class="accordion-body tl-muted">
+          <ul class="tl-checklist">
+            <li><strong class="text-white">Pip</strong> — the smallest standard price move for a pair; 0.0001 for most FX pairs, 0.01 for pairs quoted in JPY.</li>
+            <li><strong class="text-white">Lot</strong> — a standard position size of 100,000 units of the base currency (mini lot = 10,000, micro lot = 1,000). The Calculator's pair-based sizing assumes a standard lot for FX by default.</li>
+            <li><strong class="text-white">Spread</strong> — the gap between bid (sell price) and ask (buy price); it's a built-in cost on every entry.</li>
+            <li><strong class="text-white">Session</strong> — Asian, London and New York sessions overlap and drive most of the day's volatility; the Economic Calendar flags scheduled events inside them.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="tl-command-card mb-3 overflow-hidden">
+      <h2 class="accordion-header m-0">
+        <button class="accordion-button collapsed tl-accordion-btn" type="button" data-bs-toggle="collapse" data-bs-target="#eduCandles">
+          <i class="bi bi-2-circle me-2"></i> Reading candlesticks & patterns
+        </button>
+      </h2>
+      <div id="eduCandles" class="accordion-collapse collapse" data-bs-parent="#eduAccordion">
+        <div class="accordion-body tl-muted">
+          <p>Each candle shows open, high, low and close for its period. Body = open-to-close range; wicks = the extremes reached but not held.</p>
+          <ul class="tl-checklist">
+            <li><strong class="text-white">Bullish / bearish engulfing</strong> — a candle whose body fully swallows the prior candle's body, signalling a potential reversal.</li>
+            <li><strong class="text-white">Hammer / pin bar</strong> — small body near the top of the range with a long lower wick; a rejection of lower prices.</li>
+            <li><strong class="text-white">Shooting star</strong> — the bearish mirror of a hammer: long upper wick rejecting higher prices.</li>
+            <li><strong class="text-white">Doji</strong> — open ≈ close; indecision, often a pause point.</li>
+          </ul>
+          <p class="small mb-0">The Scanner runs this exact pattern check on every instrument and lists any match under "Evidence".</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="tl-command-card mb-3 overflow-hidden">
+      <h2 class="accordion-header m-0">
+        <button class="accordion-button collapsed tl-accordion-btn" type="button" data-bs-toggle="collapse" data-bs-target="#eduIndicators">
+          <i class="bi bi-3-circle me-2"></i> Indicator glossary — what the Scanner checks
+        </button>
+      </h2>
+      <div id="eduIndicators" class="accordion-collapse collapse" data-bs-parent="#eduAccordion">
+        <div class="accordion-body tl-muted">
+          <div class="row g-3 small">
+            <div class="col-md-6"><strong class="text-white">RSI</strong> — momentum oscillator, 0–100; &gt;70 overbought, &lt;30 oversold.</div>
+            <div class="col-md-6"><strong class="text-white">MACD</strong> — trend/momentum via two EMAs; a positive histogram favors bulls.</div>
+            <div class="col-md-6"><strong class="text-white">ADX / DI</strong> — trend strength (not direction); above 25 signals a genuine trend.</div>
+            <div class="col-md-6"><strong class="text-white">Bollinger Bands</strong> — volatility envelope around a moving average; closes outside a band flag a breakout.</div>
+            <div class="col-md-6"><strong class="text-white">Stochastic</strong> — %K/%D momentum oscillator; extreme readings and crossovers both matter.</div>
+            <div class="col-md-6"><strong class="text-white">Williams %R</strong> — momentum, -100 to 0; below -80 oversold, above -20 overbought.</div>
+            <div class="col-md-6"><strong class="text-white">On-Balance Volume</strong> — running total of signed volume; confirms whether volume backs the move.</div>
+            <div class="col-md-6"><strong class="text-white">Parabolic SAR</strong> — dotted stop-and-reverse trend follower; a flip signals a potential trend change.</div>
+            <div class="col-md-6"><strong class="text-white">Ichimoku Cloud</strong> — Tenkan/Kijun lines plus a cloud (Kumo); price above/below the cloud with an aligned cross frames trend.</div>
+            <div class="col-md-6"><strong class="text-white">Donchian Channel</strong> — N-period high/low channel; a close beyond it is the classic Turtle-trading breakout signal.</div>
+            <div class="col-md-6"><strong class="text-white">Support / Resistance</strong> — recent swing highs/lows the market has respected before.</div>
+            <div class="col-md-6"><strong class="text-white">Classic pivot points</strong> — floor-trader levels (Pivot, R1/S1, R2/S2) derived from the prior period's H/L/C.</div>
+            <div class="col-md-6"><strong class="text-white">Fibonacci retracement</strong> — 23.6/38.2/50/61.8/78.6% levels across a swing; confluence zones for reactions.</div>
+            <div class="col-md-6"><strong class="text-white">VWAP</strong> — volume-weighted average price; a common intraday fair-value reference.</div>
+            <div class="col-md-6"><strong class="text-white">CRT (Candle Range Theory)</strong> — an ICT/SMC-style read on whether the latest candle swept and reclaimed the prior range.</div>
+          </div>
+          <p class="small mt-3 mb-0">Every item above feeds the Scanner's confluence score — open any pair's workspace and check "Evidence" to see which ones fired.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="tl-command-card mb-3 overflow-hidden">
+      <h2 class="accordion-header m-0">
+        <button class="accordion-button collapsed tl-accordion-btn" type="button" data-bs-toggle="collapse" data-bs-target="#eduRisk">
+          <i class="bi bi-4-circle me-2"></i> Risk management
+        </button>
+      </h2>
+      <div id="eduRisk" class="accordion-collapse collapse" data-bs-parent="#eduAccordion">
+        <div class="accordion-body tl-muted">
+          <ul class="tl-checklist">
+            <li>Size positions from account risk (e.g. 1% of balance), never from a target profit — the Calculator hub does this math for you, pair by pair.</li>
+            <li>Define entry, stop and target before entering, not after.</li>
+            <li><strong class="text-white">R-multiple</strong>: reward expressed as a multiple of risk (2R = won twice what you risked).</li>
+            <li>Track drawdown (peak-to-trough equity decline) — recovering from a 50% drawdown needs a 100% gain.</li>
+            <li>Log every trade in the Journal; edge is only visible over a meaningful sample size.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="tl-command-card mb-3 overflow-hidden">
+      <h2 class="accordion-header m-0">
+        <button class="accordion-button collapsed tl-accordion-btn" type="button" data-bs-toggle="collapse" data-bs-target="#eduPlatform">
+          <i class="bi bi-5-circle me-2"></i> Using TRADERS LOG end-to-end
+        </button>
+      </h2>
+      <div id="eduPlatform" class="accordion-collapse collapse" data-bs-parent="#eduAccordion">
+        <div class="accordion-body tl-muted">
+          <ol class="tl-checklist">
+            <li><strong class="text-white">Scan</strong> — run the Scanner across an asset universe; tap any result card to open that pair's workspace.</li>
+            <li><strong class="text-white">Confirm</strong> — on the instrument page, check the live quote, multi-timeframe bias and full evidence list.</li>
+            <li><strong class="text-white">Save</strong> — add promising pairs to a Watchlist directly from that page for ongoing tracking.</li>
+            <li><strong class="text-white">Size</strong> — use the Calculator hub, pick the pair, and let it pull the live price and a standard-lot multiplier.</li>
+            <li><strong class="text-white">Log</strong> — record the trade in the Journal; P&L, R:R and duration are computed for you.</li>
+            <li><strong class="text-white">Review</strong> — Performance Analytics aggregates win rate, expectancy and drawdown across your Journal history.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="small tl-muted mt-3">Educational content only — not investment advice. Markets carry real risk of loss.</div>
+</main>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+<%- include('partials/footer') %>
+</body></html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><%- include('partials/head') %></head>
+<body class="tl-body">
+<%- include('partials/nav') %>
+
+<div class="container-fluid px-3 px-lg-4 py-3 py-lg-4">
+  <div class="d-flex flex-wrap justify-content-between align-items-end gap-3 mb-4">
+    <div>
+      <div class="tl-terminal-label mb-1">TRADERS LOG // PERFORMANCE</div>
+      <h2 class="mb-1 fw-bold text-white">TRADING DASHBOARD</h2>
+      <div class="tl-muted small">Realised performance computed from your closed journal trades — no fabricated numbers.</div>
+    </div>
+    <a href="/journal" class="btn tl-btn-gold"><i class="bi bi-journal-plus"></i> OPEN JOURNAL</a>
+  </div>
+
+  <div class="row g-3 mb-3" id="metrics">
+    <div class="col-12"><div class="tl-card p-4 text-center tl-muted"><span class="spinner-border spinner-border-sm me-2"></span> Loading performance metrics…</div></div>
+  </div>
+
+  <div class="row g-3 g-xl-4 mb-3">
+    <div class="col-lg-7">
+      <div class="tl-card p-3 h-100">
+        <h6 class="tl-heading mb-3"><i class="bi bi-bar-chart-line"></i> DAILY P&amp;L</h6>
+        <canvas id="daily" height="220"></canvas>
+      </div>
+    </div>
+    <div class="col-lg-5">
+      <div class="tl-card p-3 h-100">
+        <h6 class="tl-heading mb-3"><i class="bi bi-graph-up"></i> EQUITY CURVE</h6>
+        <canvas id="equity" height="220"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <div class="row g-3 g-xl-4">
+    <div class="col-lg-6">
+      <div class="tl-card p-3 h-100">
+        <h6 class="tl-heading mb-3"><i class="bi bi-diagram-3"></i> P&amp;L BY STRATEGY</h6>
+        <canvas id="strategies" height="240"></canvas>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="row g-3">
+        <div class="col-12">
+          <div class="tl-card p-3">
+            <h6 class="tl-heading mb-2"><i class="bi bi-currency-exchange"></i> P&amp;L BY INSTRUMENT</h6>
+            <div id="instruments" class="small">Loading…</div>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="tl-card p-3">
+            <h6 class="tl-heading mb-2"><i class="bi bi-clock-history"></i> BY SESSION</h6>
+            <div id="sessions" class="small">Loading…</div>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="tl-card p-3">
+            <h6 class="tl-heading mb-2"><i class="bi bi-bullseye"></i> BY SETUP</h6>
+            <div id="setups" class="small">Loading…</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.4/chart.umd.min.js"></script>
+<script src="/js/dashboard.js"></script>
+<%- include('partials/footer') %>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="TRADERS LOG — integrated financial markets workspace with live market data, AI scanning, watchlists, sessions and professional charting.">
+  <title><%= title %> — TRADERS LOG</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800;900&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="/css/landing.css">
+</head>
+<body class="tl-landing">
+<nav class="landing-nav" id="landingNav">
+  <div class="container d-flex align-items-center justify-content-between">
+    <a class="brand-lockup" href="#home">
+      <img src="/assets/traders-log-logo.png" alt="TRADERS LOG logo">
+      <span>TRADERS LOG<small>GLOBAL MARKETS WORKSPACE</small></span>
+    </a>
+    <div class="d-none d-lg-flex align-items-center landing-links">
+      <a class="nav-link" href="/markets">Markets</a><a class="nav-link" href="/wallstreet">Wall Street</a><a class="nav-link" href="/scanner">AI Scanner</a><a class="nav-link" href="/calendar">Calendar</a><a class="nav-link" href="/calculators">Calculators</a><a class="nav-link" href="#analysis">Charts</a><a class="nav-link" href="#community">Community</a><a class="nav-link nav-cta" href="/watchlists">Open Workspace</a>
+    </div>
+    <button class="navbar-toggler d-lg-none border-0 text-success landing-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mobileNav" aria-label="Open navigation" aria-expanded="false" aria-controls="mobileNav"><span class="tl-hamburger" aria-hidden="true"><span></span><span></span><span></span></span></button>
+  </div>
+  <div class="collapse d-lg-none" id="mobileNav"><div class="container py-3 d-grid gap-2"><a class="nav-link" href="/markets">Markets</a><a class="nav-link" href="/wallstreet">Wall Street</a><a class="nav-link" href="/scanner">AI Scanner</a><a class="nav-link" href="/calendar">Calendar</a><a class="nav-link" href="/calculators">Calculators</a><a class="nav-link" href="#analysis">Charts</a><a class="nav-link" href="#community">Community</a><a class="nav-link nav-cta text-center" href="/watchlists">Open Workspace</a></div></div>
+</nav>
+
+<main id="home">
+<section class="hero-wrap">
+  <div class="hero-grid"></div><div class="hero-glow"></div>
+  <div class="container position-relative">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-7 fade-up">
+        <span class="eyebrow"><span class="live-dot"></span> Integrated Financial Markets System</span>
+        <h1 class="hero-title">Read the market.<br>Build the trade.<br>Log the edge.</h1>
+        <p class="hero-copy">TRADERS LOG brings your market workspace into one place — live provider-backed quotes, AI technical scanning, watchlists, global sessions, currency strength and professional charting.</p>
+        <div class="hero-actions"><a href="/scanner" class="hero-btn primary"><i class="bi bi-radar"></i> Launch AI Scanner</a><a href="#markets" class="hero-btn secondary"><i class="bi bi-activity"></i> View Live Markets</a></div>
+        <div class="hero-metrics"><div class="metric"><strong>LIVE</strong><span>Provider-backed quotes</span></div><div class="metric"><strong>AI</strong><span>Technical market scanner</span></div><div class="metric"><strong>24/5</strong><span>Global market sessions</span></div></div>
+      </div>
+      <div class="col-lg-5 text-center fade-up"><img class="hero-logo" src="/assets/traders-log-logo.png" alt="TRADERS LOG premium financial markets logo"></div>
+    </div>
+  </div>
+</section>
+
+<div class="ticker"><div class="ticker-track" id="tickerTrack"><span class="ticker-item">Loading live market data…</span></div></div>
+
+<section class="section-pad" id="platform"><div class="container"><div class="section-head fade-up"><div><div class="section-kicker">One system</div><h2 class="section-title">Everything a serious trader needs.</h2></div><p class="section-sub">Built around a database-first architecture so the interface can grow without turning into a collection of disconnected tools.</p></div>
+<div class="feature-grid">
+  <div class="glass-card fade-up"><div class="feature-icon"><i class="bi bi-graph-up-arrow"></i></div><h3>Live Markets</h3><p>Quotes and market state come through configured providers and are explicitly labelled when data is unavailable.</p></div>
+  <div class="glass-card fade-up"><div class="feature-icon"><i class="bi bi-cpu"></i></div><h3>AI Market Scanner</h3><p>Rank instruments using real candle data and technical evidence including RSI, MACD, ATR, ADX and Bollinger Bands.</p><a href="/scanner" class="tool-link">Open Scanner →</a></div>
+  <div class="glass-card fade-up"><div class="feature-icon"><i class="bi bi-star"></i></div><h3>Watchlists</h3><p>Keep your instruments organised and request live quotes without hard-coded prices.</p><a href="/watchlists" class="tool-link">Manage Watchlists →</a></div>
+  <div class="glass-card fade-up"><div class="feature-icon"><i class="bi bi-journal-text"></i></div><h3>Trading Workflow</h3><p>Designed to expand into journal, news, CRT, liquidity, alerts, correlations and education modules.</p></div>
+</div></div></section>
+
+<section class="section-pad pt-0" id="markets"><div class="container"><div class="section-head fade-up"><div><div class="section-kicker">Market desk</div><h2 class="section-title">Global markets, from one screen.</h2></div><p class="section-sub">No fabricated market numbers. If a provider is not configured or a quote fails, TRADERS LOG says so.</p></div>
+<div class="market-shell fade-up"><div class="statusbar"><span class="status-pill" id="marketStatus">Checking providers…</span><span class="data-note" id="refreshLabel">Waiting for first update</span></div><div class="table-responsive"><table class="market-table"><thead><tr><th>Instrument</th><th>Price</th><th>Change</th><th>Day High</th><th>Day Low</th><th>Status</th></tr></thead><tbody id="marketTable"><tr><td colspan="6" class="empty-row">Loading live quotes…</td></tr></tbody></table></div></div></div></section>
+
+<section class="section-pad pt-0" id="scanner"><div class="container"><div class="section-head fade-up"><div><div class="section-kicker">Analysis engine</div><h2 class="section-title">From raw candles to a trading bias.</h2></div><a class="hero-btn secondary" href="/scanner">Open full scanner</a></div><div class="tool-grid"><div class="glass-card tool-card fade-up"><div class="feature-icon"><i class="bi bi-radar"></i></div><h3>Multi-asset scanning</h3><p>Forex, stocks, indices, commodities, crypto, ETFs and bonds are represented by the database instrument universe.</p></div><div class="glass-card tool-card fade-up"><div class="feature-icon"><i class="bi bi-bar-chart-line"></i></div><h3>Evidence-first signals</h3><p>Scanner outputs are derived from market candles rather than manually typed buy/sell calls.</p></div><div class="glass-card tool-card fade-up"><div class="feature-icon"><i class="bi bi-diagram-3"></i></div><h3>Multi-timeframe context</h3><p>Open any instrument to inspect its quote, scanner result and multi-timeframe bias.</p></div></div></div></section>
+
+<section class="section-pad pt-0" id="sessions"><div class="container"><div class="section-head fade-up"><div><div class="section-kicker">Global clock</div><h2 class="section-title">Market sessions in your timezone.</h2></div><p class="section-sub">The session engine tracks Sydney, Tokyo, London, New York and the London–New York overlap.</p></div><div id="sessionPanel" class="session-grid fade-up"><div class="session-card"><div class="session-name">Loading sessions…</div><div class="session-time">Connecting to session engine</div></div></div></div></section>
+
+<section class="section-pad pt-0" id="analysis"><div class="container"><div class="section-head fade-up"><div><div class="section-kicker">Professional charting</div><h2 class="section-title">Analyse with a full chart workspace.</h2></div><div class="chart-symbols"><button class="chart-symbol active" data-symbol="FX:EURUSD">EUR/USD</button><button class="chart-symbol" data-symbol="FX:GBPUSD">GBP/USD</button><button class="chart-symbol" data-symbol="OANDA:XAUUSD">GOLD</button><button class="chart-symbol" data-symbol="COINBASE:BTCUSD">BTC/USD</button></div></div><div class="chart-wrap fade-up" id="tradingviewChart">
+  <div class="chart-overlay-controls"><span class="chart-live-badge"><span class="live-dot"></span> LIVE CHART</span><button type="button" class="chart-expand-btn" id="chartExpandBtn" aria-label="Expand chart"><i class="bi bi-arrows-fullscreen"></i><span>Expand</span></button></div>
+</div><p class="risk">Charting is provided by TradingView. Market quotes and scanner calculations elsewhere in TRADERS LOG are routed through the application’s configured data providers.</p></div></section>
+
+<section class="section-pad pt-0" id="community"><div class="container"><div class="community fade-up"><div class="section-kicker">Community</div><h2 class="section-title">Trade, learn and stay connected.</h2><p class="section-sub">Join the official TRADERS LOG channels.</p><div class="social-grid">
+  <a class="social-btn whatsapp" href="https://wa.me/qr/UMC3HRXEUSROD1" target="_blank" rel="noopener noreferrer" aria-label="Add TRADERS LOG on WhatsApp"><i class="fab fa-whatsapp"></i><span>WhatsApp</span><i class="bi bi-arrow-up-right ms-auto"></i></a>
+  <a class="social-btn telegram" href="https://t.me/traders_log" target="_blank" rel="noopener noreferrer" aria-label="Open TRADERS LOG on Telegram"><i class="fab fa-telegram-plane"></i><span>Telegram</span><i class="bi bi-arrow-up-right ms-auto"></i></a>
+  <a class="social-btn instagram" href="https://www.instagram.com/s_treetreaper" target="_blank" rel="noopener noreferrer" aria-label="Open TRADERS LOG on Instagram"><i class="fab fa-instagram"></i><span>Instagram</span><i class="bi bi-arrow-up-right ms-auto"></i></a>
+</div></div></div></section>
+
+<section class="section-pad pt-0" id="contact"><div class="container"><div class="section-head fade-up"><div><div class="section-kicker">Contact</div><h2 class="section-title">Talk to TRADERS LOG.</h2></div></div><div class="contact-grid"><div class="glass-card fade-up"><form class="contact-form" id="contactForm"><input id="cfName" type="text" placeholder="Your full name" required><input id="cfEmail" type="email" placeholder="Email address" required><input id="cfPhone" type="tel" placeholder="Phone number (optional)"><textarea id="cfMessage" placeholder="How can we help?"></textarea><button class="hero-btn primary" type="submit">Send via WhatsApp <i class="fab fa-whatsapp"></i></button></form></div><div class="contact-info fade-up"><div class="info-row"><i class="bi bi-radar"></i><div><strong>AI Scanner</strong><span>Rank live instruments and inspect technical evidence.</span></div></div><div class="info-row"><i class="bi bi-star"></i><div><strong>Watchlists</strong><span>Keep your favourite instruments close to the market.</span></div></div><div class="info-row"><i class="bi bi-shield-check"></i><div><strong>Data transparency</strong><span>LIVE, STALE and UNAVAILABLE states are shown instead of fake prices.</span></div></div></div></div><p class="risk">Risk warning: financial markets involve substantial risk. TRADERS LOG provides analysis, tools and educational information; it is not a promise of returns or a substitute for your own risk management. Do not represent the platform as a regulated broker unless the appropriate licence and regulator details have been verified.</p></div></section>
+</main>
+
+<footer class="landing-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand-block"><div class="footer-brand"><img src="/assets/traders-log-logo.png" alt="TRADERS LOG"><span>TRADERS LOG<small>GLOBAL MARKETS WORKSPACE</small></span></div><p>Market intelligence, technical scanning and disciplined trade workflow in one terminal.</p><div class="footer-status"><span class="live-dot"></span> SYSTEM ONLINE · PROVIDER DATA DEPENDENT</div></div>
+      <div><h6>PLATFORM</h6><a href="/">Terminal</a><a href="/scanner">AI Scanner</a><a href="/watchlists">Watchlists</a><a href="#analysis">Charts</a></div>
+      <div><h6>ANALYSIS</h6><a href="#markets">Live Markets</a><a href="#sessions">Sessions</a><a href="#community">Community</a><a href="#contact">Support</a></div>
+      <div><h6>CONNECT</h6><a href="https://wa.me/qr/UMC3HRXEUSROD1" target="_blank" rel="noopener noreferrer">WhatsApp ↗</a><a href="https://t.me/traders_log" target="_blank" rel="noopener noreferrer">Telegram ↗</a><a href="https://www.instagram.com/s_treetreaper" target="_blank" rel="noopener noreferrer">Instagram ↗</a></div>
+    </div>
+    <div class="footer-social-row">
+      <a href="https://wa.me/qr/UMC3HRXEUSROD1" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+      <a href="https://t.me/traders_log" target="_blank" rel="noopener noreferrer" aria-label="Telegram"><i class="fab fa-telegram-plane"></i></a>
+      <a href="https://www.instagram.com/s_treetreaper" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+    </div>
+    <div class="footer-bottom"><span>© 2026 TRADERS LOG. All rights reserved.</span><span>Analysis only · Manage risk · Verify signals</span></div>
+  </div>
+</footer>
+<a href="https://wa.me/qr/UMC3HRXEUSROD1" target="_blank" rel="noopener" aria-label="Contact TRADERS LOG on WhatsApp" class="tl-whatsapp-fab"><i class="fab fa-whatsapp"></i></a>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+<script src="/js/landing.js"></script>
+</body>
+</html>

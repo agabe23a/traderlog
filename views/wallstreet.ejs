@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en"><head><%- include('partials/head') %></head>
+<body class="tl-body">
+<%- include('partials/nav') %>
+<main class="container-fluid px-3 px-lg-4 py-3 py-lg-4">
+  <div class="d-flex flex-wrap justify-content-between align-items-end gap-3 mb-4">
+    <div><div class="tl-terminal-label">TRADERS LOG // US MARKET COMMAND CENTER</div><h1 class="display-6 fw-bold text-white mb-2">WALL STREET</h1><p class="tl-muted mb-0">Indices, major stocks, movers and market intelligence from the configured data universe.</p></div>
+    <a href="/news" class="btn tl-btn-gold"><i class="bi bi-newspaper"></i> MARKET NEWS</a>
+  </div>
+  <div class="row g-3 mb-4" id="indexGrid"></div>
+  <div class="row g-3">
+    <div class="col-xl-8"><div class="tl-command-card p-3"><div class="d-flex justify-content-between mb-3"><h5 class="tl-heading mb-0">MARKET MOVERS</h5><span id="wallUpdated" class="tl-terminal-label">—</span></div><div id="movers" class="row g-2"></div></div></div>
+    <div class="col-xl-4"><div class="tl-command-card p-3 h-100"><h5 class="tl-heading">WALL STREET INTELLIGENCE</h5><div id="wallNews" class="small tl-muted mt-3">Open News Center for live headlines.</div><a href="/calendar" class="btn btn-outline-secondary w-100 mt-4">Economic Calendar</a></div></div>
+  </div>
+</main>
+<script src="/js/wallstreet.js"></script>
+<%- include('partials/footer') %>
+</body></html>

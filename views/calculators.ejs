@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en"><head><%- include('partials/head') %></head>
+<body class="tl-body">
+<%- include('partials/nav') %>
+<main class="container-fluid px-3 px-lg-4 py-3 py-lg-4">
+  <div class="mb-4"><div class="tl-terminal-label">TRADERS LOG // RISK DESK</div><h1 class="display-6 fw-bold text-white">CALCULATOR HUB</h1><p class="tl-muted">Deterministic trading math. Results are calculations, not trade recommendations.</p></div>
+  <div class="row g-3 g-xl-4">
+    <div class="col-lg-6"><div class="tl-command-card p-4 h-100"><h5 class="tl-heading">POSITION SIZE / RISK</h5>
+      <div class="row g-3 mt-1">
+        <div class="col-12 position-relative">
+          <label class="tl-label">Pair <span class="tl-muted fw-normal">(optional — pulls the live price & sets a lot multiplier)</span></label>
+          <input id="calcPairSearch" class="form-control tl-select" type="text" placeholder="Search a pair, e.g. EUR/USD" autocomplete="off">
+          <ul id="calcPairResults" class="dropdown-menu tl-dropdown w-100" style="display:none;max-height:260px;overflow-y:auto"></ul>
+          <div id="calcPairStatus" class="small tl-muted mt-1">&nbsp;</div>
+        </div>
+        <div class="col-6"><label class="tl-label">Account balance</label><input id="balance" class="form-control tl-select" type="number" value="1000" min="0"></div>
+        <div class="col-6"><label class="tl-label">Risk %</label><input id="riskPct" class="form-control tl-select" type="number" value="1" min="0" step=".1"></div>
+        <div class="col-6"><label class="tl-label">Entry price</label><input id="entry" class="form-control tl-select" type="number" value="100" min="0" step=".00001"></div>
+        <div class="col-6"><label class="tl-label">Stop loss</label><input id="stop" class="form-control tl-select" type="number" value="98" min="0" step=".00001"></div>
+        <div class="col-12"><label class="tl-label">Value per price unit (contract multiplier)</label><input id="mult" class="form-control tl-select" type="number" value="1" min="0" step=".01"></div>
+      </div>
+      <div class="row g-3 mt-2"><div class="col-4"><div class="tl-card p-3"><div class="tl-terminal-label">RISK CASH</div><strong id="riskCash">—</strong></div></div><div class="col-4"><div class="tl-card p-3"><div class="tl-terminal-label">DISTANCE</div><strong id="distance">—</strong></div></div><div class="col-4"><div class="tl-card p-3"><div class="tl-terminal-label">SIZE</div><strong id="size">—</strong></div></div></div>
+    </div></div>
+    <div class="col-lg-6"><div class="tl-command-card p-4 h-100"><h5 class="tl-heading">RISK / REWARD</h5>
+      <div class="row g-3 mt-1"><div class="col-6"><label class="tl-label">Entry</label><input id="rrEntry" class="form-control tl-select" type="number" value="100"></div><div class="col-6"><label class="tl-label">Stop</label><input id="rrStop" class="form-control tl-select" type="number" value="98"></div><div class="col-6"><label class="tl-label">Target</label><input id="rrTarget" class="form-control tl-select" type="number" value="104"></div></div>
+      <div class="tl-card p-4 mt-3 text-center"><div class="tl-terminal-label">RISK / REWARD RATIO</div><div id="rrValue" class="display-5 fw-bold text-white">—</div><div id="rrText" class="tl-muted">Enter valid levels.</div></div>
+    </div></div>
+    <div class="col-lg-6"><div class="tl-command-card p-4"><h5 class="tl-heading">P&L</h5><div class="row g-3"><div class="col-6"><label class="tl-label">Entry</label><input id="pEntry" class="form-control tl-select" type="number" value="100"></div><div class="col-6"><label class="tl-label">Exit</label><input id="pExit" class="form-control tl-select" type="number" value="105"></div><div class="col-6"><label class="tl-label">Units</label><input id="pUnits" class="form-control tl-select" type="number" value="10"></div><div class="col-6"><label class="tl-label">Fees</label><input id="pFees" class="form-control tl-select" type="number" value="0"></div></div><div class="tl-card p-3 mt-3"><span class="tl-terminal-label">LONG P&L</span><strong id="pnl" class="d-block fs-3">—</strong></div></div></div>
+    <div class="col-lg-6"><div class="tl-command-card p-4"><h5 class="tl-heading">DRAWDOWN</h5><div class="row g-3"><div class="col-6"><label class="tl-label">Peak equity</label><input id="peak" class="form-control tl-select" type="number" value="1000"></div><div class="col-6"><label class="tl-label">Current equity</label><input id="current" class="form-control tl-select" type="number" value="920"></div></div><div class="tl-card p-3 mt-3"><span class="tl-terminal-label">DRAWDOWN</span><strong id="dd" class="d-block fs-3">—</strong></div></div></div>
+  </div>
+</main>
+<script src="/js/calculators.js"></script>
+<%- include('partials/footer') %>
+</body></html>

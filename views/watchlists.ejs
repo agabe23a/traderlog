@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><%- include('partials/head') %></head>
+<body class="tl-body">
+<%- include('partials/nav') %>
+
+<div class="container-fluid px-3 px-lg-4 py-3 py-lg-4">
+  <div class="d-flex flex-wrap justify-content-between align-items-end gap-3 mb-4">
+    <div>
+      <div class="tl-terminal-label">PORTFOLIO // OBSERVATION DECK</div>
+      <h2 class="mb-1 fw-bold text-white">WATCHLISTS</h2>
+      <div class="tl-muted small">Keep live instruments, price movement and data health in one view.</div>
+    </div>
+    <button id="newWatchlistBtn" class="btn tl-btn-gold"><i class="bi bi-plus-lg"></i> NEW WATCHLIST</button>
+  </div>
+
+  <div class="row g-3 g-xl-4">
+    <div class="col-lg-3">
+      <div class="tl-card p-2">
+        <div class="d-flex justify-content-between px-2 py-2">
+          <span class="tl-terminal-label">COLLECTIONS</span>
+          <span class="tl-terminal-label" id="watchlistCount">0</span>
+        </div>
+        <div class="list-group list-group-flush" id="watchlistNav">
+          <% watchlists.forEach(function(w) { %>
+            <a href="#" data-id="<%= w.id %>" class="list-group-item tl-list-item watchlist-link d-flex justify-content-between align-items-center">
+              <span><i class="bi bi-chevron-right small me-1"></i><%= w.name %></span>
+            </a>
+          <% }) %>
+          <% if (watchlists.length === 0) { %>
+            <div class="tl-muted small p-3">No watchlists yet. Create one to begin.</div>
+          <% } %>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-9">
+      <div class="tl-card p-3">
+        <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
+          <h6 id="activeWatchlistTitle" class="tl-heading mb-0"><i class="bi bi-broadcast-pin"></i> SELECT A WATCHLIST</h6>
+          <span id="watchlistStatus" class="tl-terminal-label">STANDBY</span>
+        </div>
+        <div class="table-responsive">
+          <table class="table tl-table mb-0" id="watchlistTable">
+            <thead><tr><th>Symbol</th><th>Price</th><th>Change %</th><th>Day High</th><th>Day Low</th><th>Status</th><th></th></tr></thead>
+            <tbody id="watchlistBody">
+              <tr><td colspan="7" class="tl-muted text-center py-5">Select a watchlist</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+<script src="/js/watchlists.js"></script>
+<%- include('partials/footer') %>
+</body>
+</html>

@@ -1,0 +1,14 @@
+
+.tl-market-hero{padding:1rem 0 1.5rem}
+.tl-command-card{background:linear-gradient(145deg,rgba(18,22,15,.98),rgba(12,17,13,.94));border:1px solid var(--tl-border);border-radius:16px;box-shadow:0 18px 60px rgba(0,0,0,.22)}
+.tl-market-card{background:var(--tl-panel);border:1px solid var(--tl-border);border-radius:14px;padding:1rem;transition:.22s ease;min-height:150px}
+.tl-market-card:hover{transform:translateY(-2px);border-color:rgba(212,175,55,.35);box-shadow:0 14px 40px rgba(0,0,0,.2)}
+.tl-price{font:700 1.45rem/1.1 'JetBrains Mono',monospace;color:#fff}
+.tl-symbol{font-weight:700;color:#fff}.tl-market-name{font-size:.78rem;color:var(--tl-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tl-change-up{color:#42d37a}.tl-change-down{color:#ff6d6d}.tl-change-flat{color:#a8ada4}
+.tl-data-status{font:600 .64rem/1 'JetBrains Mono',monospace;letter-spacing:.08em;color:var(--tl-muted)}
+.tl-status-live{color:#42d37a}.tl-status-stale{color:#f0c35b}.tl-status-unavailable{color:#ff6d6d}
+.tl-market-toolbar{display:flex;gap:.5rem;flex-wrap:wrap;align-items:center}
+.tl-market-filter.active{background:rgba(212,175,55,.15);border-color:rgba(212,175,55,.45);color:var(--tl-gold-soft)}
+.tl-stat-strip{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.75rem}
+@media(max-width:767px){.tl-stat-strip{grid-template-columns:repeat(2,minmax(0,1fr))}}

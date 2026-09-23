@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><%- include('partials/head') %></head>
+<body class="tl-body tl-auth-body">
+<div class="tl-auth-shell">
+  <div class="tl-auth-panel">
+    <a href="/" class="tl-auth-brand">
+      <img src="/assets/traders-log-logo.png" alt="TRADERS LOG">
+      <span>TRADERS LOG</span>
+    </a>
+    <h3 class="tl-auth-title">Sign in</h3>
+    <p class="tl-auth-sub">Access your journal, dashboard and watchlists.</p>
+
+    <% if (typeof error !== 'undefined' && error) { %>
+      <div class="tl-error mb-3"><i class="bi bi-exclamation-triangle"></i> <%= error %></div>
+    <% } %>
+
+    <form method="POST" action="/login" class="tl-auth-form" autocomplete="on">
+      <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+      <input type="hidden" name="next" value="<%= typeof next !== 'undefined' ? next : '/dashboard' %>">
+
+      <label class="tl-label mb-1" for="email">Email address</label>
+      <input class="tl-auth-input mb-3" type="email" id="email" name="email" placeholder="you@example.com" required autofocus>
+
+      <label class="tl-label mb-1" for="password">Password</label>
+      <div class="tl-auth-pass-wrap mb-3">
+        <input class="tl-auth-input" type="password" id="password" name="password" placeholder="••••••••••" required minlength="10">
+        <button type="button" class="tl-auth-eye" id="togglePass" aria-label="Show password"><i class="bi bi-eye"></i></button>
+      </div>
+
+      <button type="submit" class="btn tl-btn-gold w-100 mt-1"><i class="bi bi-box-arrow-in-right"></i> SIGN IN</button>
+    </form>
+
+    <div class="tl-auth-foot">
+      Don't have an account? <a href="/register" class="tl-link">Create one</a>
+    </div>
+    <a href="/" class="tl-auth-back"><i class="bi bi-arrow-left"></i> Back to home</a>
+  </div>
+</div>
+<script src="/js/auth-ui.js"></script>
+</body>
+</html>
